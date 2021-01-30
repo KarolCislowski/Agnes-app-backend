@@ -178,7 +178,7 @@ app.post("/project", authenticateUser, async (req, res) => {
 // Get projects to create a projectlist
 app.get('/projectlist', authenticateUser)
 app.get('/projectlist', async (req, res) => {
-  const projects = await Project.find({ userId })
+  const projects = await Project.find({ userId: req.user._id })
     .sort({ createdAt: 'desc' })
     .limit(20)
     .exec()
